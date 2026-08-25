@@ -1,4 +1,4 @@
-$sourceFiles = Get-ChildItem -Path . -Recurse -Include *.lua, *.toc, *.tga -File
+$sourceFiles = Get-ChildItem -Path . -Recurse -Include *.lua, *.toc, *.tga, *.png -File
 $destinationFolder = "./build"
 
 $tocFile = Get-ChildItem -Path . -Filter *.toc | Select-Object -First 1

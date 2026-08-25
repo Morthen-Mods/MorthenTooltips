@@ -5,6 +5,7 @@
 ## Notes: Simple and lightweight tooltip addon.
 ## Category: Morthen UI
 ## SavedVariables: TooltipSettings
+## IconTexture: Interface\AddOns\MorthenTooltips\Logo.png
 
 Locales\enUS.lua
 Locales\deDE.lua
