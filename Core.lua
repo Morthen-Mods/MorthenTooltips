@@ -20,8 +20,8 @@ ns.defaults = {
     tooltipScale   = 100,  -- percent
     hideInCombat   = 2025, -- player, mount, item, toy, currency, quest, macro, achievement
 
-    showIds        = 0,
-    showPlayerInfo = 0,
+    showIds        = 2047,
+    showPlayerInfo = 63,
 }
 
 ns.lists = {
