@@ -1,0 +1,17 @@
+## Interface: 120100
+## Title: MorthenTooltips
+## Version: 1.0.0
+## Author: Morthen
+## Notes: Simple and lightweight tooltip addon.
+## Category: Morthen UI
+## SavedVariables: TooltipSettings
+
+Locales\enUS.lua
+Locales\deDE.lua
+
+Core.lua
+Realms.lua
+Tooltip.lua
+Unit.lua
+GroupFinder.lua
+Options.lua
