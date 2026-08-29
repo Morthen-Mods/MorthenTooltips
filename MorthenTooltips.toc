@@ -1,6 +1,6 @@
 ## Interface: 120100
 ## Title: MorthenTooltips
-## Version: 1.0.0
+## Version: 1.0.1
 ## Author: Morthen
 ## Notes: Simple and lightweight tooltip addon.
 ## Category: Morthen UI

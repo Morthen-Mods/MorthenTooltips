@@ -98,10 +98,26 @@ local function AddItemLevel(tooltip, unit, guid)
     end
 end
 
+local IsRestricted = C_RestrictedActions.IsAddOnRestrictionActive
+local Restriction = Enum.AddOnRestrictionType
+
+-- Aura access turns secret while one of these is active, and the aura APIs then
+-- error out on tainted code instead of handing back a secret value.
+local function AurasRestricted()
+    return IsRestricted(Restriction.Combat)
+        or IsRestricted(Restriction.Encounter)
+        or IsRestricted(Restriction.ChallengeMode)
+        or IsRestricted(Restriction.PvPMatch)
+end
+
 local function AddMount(tooltip, unit)
+    if AurasRestricted() then return end
+
     for i = 1, 10 do
-        local aura = C_UnitAuras.GetAuraDataByIndex(unit, i, "HELPFUL")
-        if not Visible(aura) then return end
+        -- the restrictions above are the documented cases, but the API errors
+        -- rather than failing softly, so never let an unexpected one through
+        local ok, aura = pcall(C_UnitAuras.GetAuraDataByIndex, unit, i, "HELPFUL")
+        if not ok or not Visible(aura) then return end
 
         local spellID, name = aura.spellId, aura.name
 
