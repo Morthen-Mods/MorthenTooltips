@@ -1,3 +1,7 @@
+### v4.0.1
+  - fixing missing flag in groupfinder
+  - 
+
 ### v4.0.0
   - rebuilt the addon from scratch for the 12.1 API
   - secret-safe throughout: every value read from the game is checked before it

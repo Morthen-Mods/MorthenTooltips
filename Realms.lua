@@ -168,5 +168,5 @@ end
 ---@return string|nil
 function ns.RealmFlag(realm)
     local locale = ns.RealmLocale(realm)
-    return locale and ("|TInterface/AddOns/BetterTooltip/Media/" .. locale .. "_flag:10:18|t ")
+    return locale and ("|TInterface/AddOns/MorthenTooltips/Media/" .. locale .. "_flag:10:18|t ")
 end
