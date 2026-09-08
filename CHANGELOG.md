@@ -1,8 +1,10 @@
-### v4.0.1
+### v1.0.2
   - fixing missing flag in groupfinder
-  - 
 
-### v4.0.0
+### v1.0.1
+  - fixing lua error when comparing item stacksize
+
+### v1.0.0
   - rebuilt the addon from scratch for the 12.1 API
   - secret-safe throughout: every value read from the game is checked before it
     is compared, concatenated or used as a key, so restricted content no longer
@@ -18,7 +20,3 @@
   - the group finder is hooked when it loads instead of being a dependency
   - settings from older versions are migrated where they still mean the same and
     dropped where they do not
-
-### v3.2.9
-  - fix lua error for Language display
-  - fix lua error for item Level display
