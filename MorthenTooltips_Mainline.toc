@@ -7,14 +7,8 @@
 ## SavedVariables: TooltipSettings
 ## IconTexture: ${icon}
 
-# Data
 Data\DefaultSettings.lua
 Data\DataHandler.lua
 
-# Locales
-
-# Shared
-
-# Mainline
-
-# Core
+Locales\enUS.lua
+Locales\deDE.lua
