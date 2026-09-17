@@ -1,0 +1,15 @@
+local _, addon = ...
+
+addon.db = {
+    TooltipSettings = {
+        hideHealthbar  = true,
+        tooltipColor   = true,
+        toggleAnchor   = true,
+        anchorPosition = "ANCHOR_CURSOR_RIGHT",
+        toggleScaling  = false,
+        tootipScale    = 125,  --percent
+        hideInCombat   = 2025, -- player, mount, item, toy, currency, quest, macro, achievement
+        showIds        = 2047, -- show all ids
+        showPlayerInfo = 63    -- show all playerInfo
+    }
+}
