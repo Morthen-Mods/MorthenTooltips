@@ -1,10 +1,10 @@
 ## Interface: 16001
-## Title: ${title}
+## Title: MorthenTooltips
 ## Version: ${version}
-## Author: ${author}
+## Author: Morthen
 ## Notes: ${description}
 ## Category: ${category}
-## SavedVariables: ${savedVariables}
+## SavedVariables: TooltipSettings
 ## IconTexture: ${icon}
 
 # Data
