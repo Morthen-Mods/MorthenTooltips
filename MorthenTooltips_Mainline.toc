@@ -1,0 +1,9 @@
+## Interface: 120100
+## Title: ${title}
+## Version: ${version}
+## Author: ${author}
+## Notes: ${description}
+## Category: ${category}
+## SavedVariables: ${savedVariables}
+## IconTexture: ${icon}
+

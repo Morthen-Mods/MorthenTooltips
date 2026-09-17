@@ -1,0 +1,20 @@
+## Interface: 16001
+## Title: ${title}
+## Version: ${version}
+## Author: ${author}
+## Notes: ${description}
+## Category: ${category}
+## SavedVariables: ${savedVariables}
+## IconTexture: ${icon}
+
+# Data
+Data\DefaultSettings.lua
+Data\DataHandler.lua
+
+# Locales
+
+# Shared
+
+# Camelot
+
+# Core
