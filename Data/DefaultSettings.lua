@@ -1,6 +1,8 @@
 local _, addon = ...
 
-addon.db = {
+addon.db = addon.db or {}
+
+addon.db.defaults = {
     TooltipSettings = {
         hideHealthbar  = true,
         tooltipColor   = true,

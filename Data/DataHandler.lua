@@ -8,6 +8,18 @@ f:SetScript("OnEvent", function(_, event, name)
     if event == "ADDON_LOADED" and name == addonName then DataHandler.OnLoad() end
 end)
 
+local function DeepCopy(source)
+    local copy = {}
+    for key, value in pairs(source) do
+        if type(value) == "table" then
+            copy[key] = DeepCopy(value)
+        else
+            copy[key] = value
+        end
+    end
+    return copy
+end
+
 local function DeepMerge(target, source)
     for key, value in pairs(source) do
         if type(value) == "table" and type(target[key]) == "table" then
@@ -19,7 +31,9 @@ local function DeepMerge(target, source)
 end
 
 function DataHandler.OnLoad()
-    for key, _ in pairs(addon.db) do
+    for key, defaults in pairs(addon.db.defaults) do
+        addon.db[key] = DeepCopy(defaults)
+
         local saved = _G[key]
         if saved ~= nil then
             DeepMerge(addon.db[key], saved)
