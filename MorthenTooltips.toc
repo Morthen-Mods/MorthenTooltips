@@ -1,6 +1,6 @@
 ## Interface: 120100
 ## Title: MorthenTooltips
-## Version: ${version}_retail
+## Version: ${version} (Retail)
 ## Author: Morthen
 ## Notes: ${description}
 ## Category: ${category}
