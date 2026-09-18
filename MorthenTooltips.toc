@@ -1,6 +1,6 @@
 ## Interface: 120100
 ## Title: MorthenTooltips
-## Version: ${version}
+## Version: ${version}_retail
 ## Author: Morthen
 ## Notes: ${description}
 ## Category: ${category}
@@ -12,3 +12,5 @@ Data\DataHandler.lua
 
 Locales\enUS.lua
 Locales\deDE.lua
+
+Shared\OptionsMenu.lua
