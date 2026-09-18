@@ -6,12 +6,3 @@
 ## Category: ${category}
 ## SavedVariables: TooltipSettings
 ## IconTexture: ${icon}
-
-Data\DefaultSettings.lua
-Data\DataHandler.lua
-
-Locales\enUS.lua
-Locales\deDE.lua
-
-Shared\OptionsMenu.lua
-Shared\TooltipUtils.lua

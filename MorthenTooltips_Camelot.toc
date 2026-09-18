@@ -13,8 +13,8 @@ Data\DataHandler.lua
 Locales\enUS.lua
 Locales\deDE.lua
 
-Shared\OptionsMenu.lua
 Shared\TooltipUtils.lua
-Shared\Modules\Tooltip.lua
+Shared\OptionsMenu.lua
+Shared\Tooltip.lua
 
-Forever\Core.lua
+Core.lua
