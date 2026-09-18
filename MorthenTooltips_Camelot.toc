@@ -14,5 +14,7 @@ Locales\enUS.lua
 Locales\deDE.lua
 
 Shared\OptionsMenu.lua
+Shared\TooltipUtils.lua
+Shared\Modules\Tooltip.lua
 
-Core.lua
+Forever\Core.lua

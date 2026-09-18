@@ -6,5 +6,6 @@ f:SetScript("OnEvent", function(_, event, ...)
     local name = ...
     if event == "ADDON_LOADED" and name == addonName then
         addon.InitSettings()
+        addon.InitTooltips()
     end
 end)
