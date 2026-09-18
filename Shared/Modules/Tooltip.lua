@@ -79,7 +79,10 @@ function addon.InitTooltips()
                     return
                 end
 
+                if not TooltipUtils.IsUsable(data) then return end
+
                 local id = data.id
+                if not TooltipUtils.IsUsable(id) then return end
 
                 if addon.ids[key] then
                     TooltipUtils.AddLine(tooltip, lang[key], 1283745)
