@@ -14,3 +14,5 @@ Locales\enUS.lua
 Locales\deDE.lua
 
 Shared\OptionsMenu.lua
+
+Core.lua

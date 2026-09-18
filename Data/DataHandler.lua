@@ -1,5 +1,5 @@
 local addonName, addon = ...
-local DataHandler = {}
+DataHandler = {}
 
 local f = CreateFrame("Frame")
 f:RegisterEvent("ADDON_LOADED")
@@ -41,4 +41,19 @@ function DataHandler.OnLoad()
 
         _G[key] = addon.db[key]
     end
+end
+
+function DataHandler.SetSetting(table, key, value)
+    local settings = addon.db[table]
+    settings[key] = value
+end
+
+function DataHandler.GetSetting(table, key)
+    local settings = addon.db[table]
+    return settings[key]
+end
+
+function DataHandler.GetDefault(table, key)
+    local default = addon.db.defaults[table]
+    return default[key]
 end

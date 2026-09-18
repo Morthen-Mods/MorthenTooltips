@@ -1,13 +1,18 @@
 local addonName, addon = ...
 
 local category, layout
+local tableName = "TooltipSettings"
+
+addon.hide, addon.ids, addon.info = {}, {}, {}
+local unpack = { hideInCombat = addon.hide, showIds = addon.ids, showPlayerInfo = addon.info }
+
 local function Setting(key)
-    local default = addon.db.defaults[key]
+    local default = DataHandler.GetDefault(tableName, key)
     local setting = Settings.RegisterAddOnSetting(category,
-            addonName .. "_" .. key, key, addon.sb,
+            addonName .. "_" .. key, key, addon.db[tableName],
             type(default), addon.lang[key], default)
 
-    setting:SetValueChangedCallback(function(_, value) addon.db[key] = value end)
+    setting:SetValueChangedCallback(function(_, value) DataHandler.SetSetting(tableName, key, value) end)
 
     return setting
 end
@@ -31,19 +36,47 @@ end
 
 local function AddCheckboxSlider(checkKey, sliderKey, min, max, step, suffix)
     local options = Settings.CreateSliderOptions(min, max, step)
-    options:SetLabelFormatter(MinimalSliderWithSteppersMixin.Label.Right,
-    function(value) return value .. (suffix or "") end)
+    options:SetLabelFormatter(MinimalSliderWithSteppersMixin.Label.Right, function(value)
+        return value .. suffix
+    end)
 
-    local init = CreateSettingsCheckboxSliderInitializer(
+    layout:AddInitializer(CreateSettingsCheckboxSliderInitializer(
             Setting(checkKey), addon.lang[checkKey], addon.lang[checkKey .. "_desc"],
-            Setting(sliderKey), options, addon.lang[sliderKey], addon.lang[sliderKey .. "_desc"]
-    )
-
-    layout:AddInitializer(init)
+            Setting(sliderKey), options, addon.lang[sliderKey], addon.lang[sliderKey .. "_desc"]))
 end
 
-local function AddMultiSelect(key, entryTable, addDescription)
-    --TODO: implement
+local function AddMultiSelect(key, addDescription)
+    local list = addon.db.Lists[key]
+    local default = DataHandler.GetDefault(tableName, key)
+
+    local proxy = Settings.RegisterProxySetting(category, addonName .. "_" .. key,
+            Settings.VarType.Number, addon.lang[key], default,
+            function() return DataHandler.GetSetting(tableName, key) end,
+            function(value)
+                DataHandler.SetSetting(tableName, key, value)
+                local bitTable = unpack[key]
+
+                for i = 1, #list do
+                    bitTable[list[i]] = bit.band(value, bit.lshift(1, i - 1)) ~= 0
+                end
+            end)
+
+    local function options()
+        local c = Settings.CreateControlTextContainer()
+
+        for i = 1, #list do
+            local entry = list[i]
+            c:AddCheckbox(i, addon.lang[entry], addDescription and addon.lang[entry .. "_desc"] or nil)
+        end
+
+        return c:GetData()
+    end
+
+    local init = Settings.CreateDropdown(category, proxy, options, addon.lang[key .. "_desc"])
+
+    init.getSelectionTextFunc = function(selections)
+        return #selections == 0 and NONE or nil
+    end
 end
 
 local function AnchorOptions()
@@ -52,10 +85,12 @@ local function AnchorOptions()
     c:Add("ANCHOR_CURSOR_LEFT", addon.lang.anchor_left)
     c:Add("ANCHOR_CURSOR_CENTER", addon.lang.anchor_center)
     c:Add("ANCHOR_CURSOR_RIGHT", addon.lang.anchor_right)
+
+    return c:GetData()
 end
 
 function addon.InitSettings()
-    category, layout = Settings.RegisterVerticalLayoutCategory(addon)
+    category, layout = Settings.RegisterVerticalLayoutCategory(addonName)
 
     AddHeader("header_general")
     AddCheckbox("hideHealthbar")
