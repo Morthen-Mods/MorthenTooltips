@@ -89,6 +89,17 @@ local function AnchorOptions()
     return c:GetData()
 end
 
+function addon.PopulateBitTables()
+    for name, list in pairs(addon.db.Lists) do
+        local bitTable = unpack[name]
+        local value = DataHandler.GetSetting(tableName, name)
+
+        for i = 1, #list do
+            bitTable[list[i]] = bit.band(value, bit.lshift(1, i - 1)) ~= 0
+        end
+    end
+end
+
 function addon.InitSettings()
     category, layout = Settings.RegisterVerticalLayoutCategory(addonName)
 

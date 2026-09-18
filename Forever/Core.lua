@@ -7,5 +7,6 @@ f:SetScript("OnEvent", function(_, event, ...)
     if event == "ADDON_LOADED" and name == addonName then
         addon.InitSettings()
         addon.InitTooltips()
+        addon.PopulateBitTables()
     end
 end)

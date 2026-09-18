@@ -7,7 +7,7 @@
 ## SavedVariables: TooltipSettings
 ## IconTexture: ${icon}
 
-Data\DefaultSettings.lua
+Forever\DefaultSettings.lua
 Data\DataHandler.lua
 
 Locales\enUS.lua
