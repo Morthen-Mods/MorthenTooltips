@@ -1,14 +1,13 @@
 local _, addon = ...
 
 local CACHE_TTL = 600   -- 10m for fetched itemLevels
-local THROTTLE  = 2     -- seconds between two requests
+local THROTTLE  = 1     -- seconds between two requests
 local TIMEOUT   = 3     -- seconds before a request is thrown away
 
 local IsUsable = TooltipUtils.IsUsable
 local levels, stamps = {}, {}
 local pending, pendingLine
 local lastRequest = 0
-
 
 local function InspectInUse()
     return InspectFrame ~= nil and InspectFrame:IsShown()
@@ -65,6 +64,8 @@ local function RequestItemLevel(guid, unit)
             if pending == guid then ReleaseInspect() end
         end)
     end
+
+    return true
 end
 
 function addon.AddItemLevel(tooltip, unit, guid)

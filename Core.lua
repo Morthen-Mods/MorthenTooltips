@@ -8,5 +8,6 @@ f:SetScript("OnEvent", function(_, event, ...)
         addon.InitSettings()
         addon.InitTooltips()
         addon.PopulateBitTables()
+        addon.InitUnitTooltip()
     end
 end)

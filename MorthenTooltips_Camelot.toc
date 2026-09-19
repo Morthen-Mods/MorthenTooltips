@@ -16,5 +16,7 @@ Locales\deDE.lua
 Shared\TooltipUtils.lua
 Shared\OptionsMenu.lua
 Shared\Tooltip.lua
+Shared\ItemLevelCache.lua
+Shared\UnitTooltip.lua
 
 Core.lua
