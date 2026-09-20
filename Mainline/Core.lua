@@ -11,5 +11,6 @@ f:SetScript("OnEvent", function(_, event, ...)
         addon.InitTooltips()
         addon.PopulateBitTables()
         addon.InitUnitTooltip()
+        addon.InitGroupFinder()
     end
 end)

@@ -21,6 +21,7 @@ Shared\OptionsMenu.lua
 Shared\Tooltip.lua
 Shared\ItemLevelCache.lua
 Mainline\UnitTooltipExtensions.lua
+Mainline\GroupFinder.lua
 Shared\UnitTooltip.lua
 
 Mainline\Core.lua

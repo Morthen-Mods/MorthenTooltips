@@ -34,7 +34,7 @@ function addon.GetLangFromApplicant(id, memberIndex)
         if slug ~= nil then
             local region = addon.Region[slug]
 
-            return "|TInterface\\AddOns\\BetterTooltip\\Media\\" .. region.locale .. "_flag:10:18|t "
+            return "|TInterface\\AddOns\\MorthenTooltips\\Media\\" .. region.locale .. "_flag:10:18|t "
         end
     end
 end
