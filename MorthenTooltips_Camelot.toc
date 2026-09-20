@@ -1,5 +1,5 @@
 ## Interface: 16001
-## Title: MorthenTooltips
+## Title: ${title}
 ## Version: ${version} (Forever)
 ## Author: Morthen
 ## Notes: ${description}

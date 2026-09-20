@@ -50,15 +50,23 @@ if [ -z "$addon_name" ]; then
 fi
 echo "Addon name found: $addon_name"
 
-version=$(grep -E '^[[:space:]]*##[[:space:]]*Version:' <<< "$resolved_toc" | head -n 1 | sed -E 's/^[^:]*:[[:space:]]*//; s/[[:space:]]+$//')
-if [ -z "$version" ]; then
-    version="0.0.0-dev"
-    echo "Warning: No '## Version:' found in .toc file. Using '$version' as fallback." >&2
-else
-    echo "Version found: $version"
+# The archive filename is built from the .properties file's own 'title' and
+# 'version' keys, independent of the (possibly differently formatted) values
+# in the .toc file.
+title="${props[title]:-}"
+if [ -z "$title" ]; then
+    echo "Error: No 'title' key found in '$(basename "$properties_file")'. Cannot determine archive name. Task will be terminated." >&2
+    exit 1
 fi
 
-zip_file="$destination_folder/${addon_name}-${version}.zip"
+version="${props[version]:-}"
+if [ -z "$version" ]; then
+    echo "Error: No 'version' key found in '$(basename "$properties_file")'. Cannot determine archive name. Task will be terminated." >&2
+    exit 1
+fi
+echo "Archive name: ${title}-${version}"
+
+zip_file="$destination_folder/${title}-${version}.zip"
 echo "ZIP archive name: '$zip_file'"
 
 # Collect source files, excluding the build folder itself
@@ -88,7 +96,7 @@ done
 rm -f "$zip_file"
 
 # Create the archive with the addon folder at its root
-(cd "$destination_folder" && zip -r -q "${addon_name}-${version}.zip" "$addon_name")
+(cd "$destination_folder" && zip -r -q "${title}-${version}.zip" "$addon_name")
 
 echo "Delete temporary data..."
 rm -rf "$target_root"

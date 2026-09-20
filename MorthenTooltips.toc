@@ -1,5 +1,5 @@
 ## Interface: 120100
-## Title: MorthenTooltips
+## Title: ${title}
 ## Version: ${version} (Retail)
 ## Author: Morthen
 ## Notes: ${description}
