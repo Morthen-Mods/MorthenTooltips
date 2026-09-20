@@ -1,5 +1,4 @@
 local _, addon = ...
-UnitTooltipExtensions = UnitTooltipExtensions or {}
 
 local IsUsable = TooltipUtils.IsUsable
 
@@ -89,7 +88,7 @@ local function AddPlayerMount(tooltip, unit)
     if AurasRestricted() then return end
 
     for i = 1, 10 do
-        local ok, aura = pcall(C_UnitAuras.GetAuraDataByIndex(unit, i, "HELPFUL"))
+        local ok, aura = pcall(C_UnitAuras.GetAuraDataByIndex, unit, i, "HELPFUL")
         if not ok or not IsUsable(aura) then return end
 
         local spellID, name = aura.spellId, aura.name
@@ -156,11 +155,11 @@ function addon.InitUnitTooltip()
         end
 
         local added = false
-        if addon.info.itemLevel then added = addon.AddItemLevel(tooltip, unit, guid) or added end
-        if addon.info.score then added = UnitTooltipExtensions.AddMythicScore(tooltip, unit) or added end
-        if addon.info.target then added = AddPlayerTarget(tooltip, unit) or added end
-        if addon.info.mount then added = AddPlayerMount(tooltip, unit) or added end
-        if addon.info.language then addon = UnitTooltipExtensions.AddPlayerLanguage(tooltip, unit) or added end
+        if addon.info.itemLevel then added = addon.AddItemLevel(tooltip, unit, guid) end
+        if addon.info.score then added = UnitTooltipExtensions.AddMythicScore(tooltip, unit) end
+        if addon.info.target then added = AddPlayerTarget(tooltip, unit) end
+        if addon.info.mount then added = AddPlayerMount(tooltip, unit) end
+        if addon.info.language then added = UnitTooltipExtensions.AddPlayerLanguage(tooltip, unit) end
 
         if added then tooltip:Show() end
     end)

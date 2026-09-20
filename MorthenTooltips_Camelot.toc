@@ -19,4 +19,4 @@ Shared\Tooltip.lua
 Shared\ItemLevelCache.lua
 Shared\UnitTooltip.lua
 
-Core.lua
+Forever\Core.lua
