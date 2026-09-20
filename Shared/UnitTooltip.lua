@@ -94,7 +94,7 @@ local function AddPlayerMount(tooltip, unit)
 
         local spellID, name = aura.spellId, aura.name
 
-        if IsUsable(spellID) and IsUsable(name) then
+        if IsUsable(spellID) and IsUsable(name) and IsUsable(C_MountJournal.GetMountFromSpell(spellID)) then
             AddLine(tooltip, addon.lang.mount, name)
             return true
         end
