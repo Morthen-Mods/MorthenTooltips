@@ -1,6 +1,9 @@
 local _, addon = ...
 local tableName = "TooltipSettings"
 
+local IsUsable = TooltipUtils.IsUsable
+local AddLine = TooltipUtils.AddLine
+
 local Icon = {
     spell   = function(id)
         local info = C_Spell.GetSpellInfo(id)
@@ -56,9 +59,9 @@ function addon.InitTooltips()
         if not addon.ids.quest then return end
 
         local questID = button.questID
-        if not TooltipUtils.IsUsable(questID) then return end
+        if not IsUsable(questID) then return end
 
-        TooltipUtils.AddLine(GameTooltip, lang.quest, questID)
+        AddLine(GameTooltip, lang.quest, questID)
         GameTooltip:Show()
     end)
 
@@ -79,20 +82,20 @@ function addon.InitTooltips()
                     return
                 end
 
-                if not TooltipUtils.IsUsable(data) then return end
+                if not IsUsable(data) then return end
 
                 local id = data.id
-                if not TooltipUtils.IsUsable(id) then return end
+                if not IsUsable(id) then return end
 
                 if addon.ids[key] then
-                    TooltipUtils.AddLine(tooltip, lang[key], 1283745)
+                    AddLine(tooltip, lang[key], 1283745)
                     added = true
                 end
 
                 if addon.ids.icon and source.icon then
                     local icon = Icon[source.icon](id)
-                    if TooltipUtils.IsUsable(icon) then
-                        TooltipUtils.AddLine(tooltip, lang.icon, icon)
+                    if IsUsable(icon) then
+                        AddLine(tooltip, lang.icon, icon)
                         added = true
                     end
                 end

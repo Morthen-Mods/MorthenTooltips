@@ -1,6 +1,7 @@
 local _, addon = ...
 
 local IsUsable = TooltipUtils.IsUsable
+local AddLine = TooltipUtils.AddLine
 
 local IsRestricted = C_RestrictedActions.IsAddOnRestrictionActive
 local Restriction = Enum.AddOnRestrictionType
@@ -58,7 +59,7 @@ local function AddCreatureID(tooltip, unit, guid)
 
     if not IsUsable(id) then return end
 
-    TooltipUtils.AddLine(tooltip, addon.lang.unit, id)
+    AddLine(tooltip, addon.lang.unit, id)
     return true
 end
 
@@ -73,14 +74,14 @@ local function AddPlayerTarget(tooltip, unit)
     if not IsUsable(isPlayer) then return end
 
     if not isPlayer then
-        TooltipUtils.AddLine(tooltip, addon.lang.target, name .. " (" .. addon.lang.npc .. ")")
+        AddLine(tooltip, addon.lang.target, name .. " (" .. addon.lang.npc .. ")")
         return true
     end
 
     local _, class = UnitClass(target)
     local color = IsUsable(class) and RAID_CLASS_COLORS[class] or nil
 
-    TooltipUtils.AddLine(tooltip, addon.lang.target, name, color and color.r, color and color.g, color and color.b)
+    AddLine(tooltip, addon.lang.target, name, color and color.r, color and color.g, color and color.b)
     return true
 end
 
@@ -94,7 +95,7 @@ local function AddPlayerMount(tooltip, unit)
         local spellID, name = aura.spellId, aura.name
 
         if IsUsable(spellID) and IsUsable(name) then
-            TooltipUtils.AddLine(tooltip, addon.lang.mount, name)
+            AddLine(tooltip, addon.lang.mount, name)
             return true
         end
     end

@@ -5,6 +5,8 @@ local THROTTLE  = 1     -- seconds between two requests
 local TIMEOUT   = 3     -- seconds before a request is thrown away
 
 local IsUsable = TooltipUtils.IsUsable
+local AddLine = TooltipUtils.AddLine
+
 local levels, stamps = {}, {}
 local pending, pendingLine
 local lastRequest = 0
@@ -72,12 +74,12 @@ function addon.AddItemLevel(tooltip, unit, guid)
     if not IsUsable(guid) then return end
 
     if levels[guid] and (GetTime() - stamps[guid]) < CACHE_TTL then
-        TooltipUtils.AddLine(tooltip, addon.lang.itemLevel, levels[guid])
+        AddLine(tooltip, addon.lang.itemLevel, levels[guid])
         return true
     end
 
     if RequestItemLevel(guid, unit) then
-        TooltipUtils.AddLine(tooltip, addon.lang.itemLevel, addon.lang.loading)
+        AddLine(tooltip, addon.lang.itemLevel, addon.lang.loading)
 
         if tooltip == GameTooltip then
             pendingLine = tooltip:NumLines()
