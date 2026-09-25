@@ -1,4 +1,5 @@
 local addonName, addon = ...
+local handler = addon.DataHandler
 
 local category, layout
 local tableName = "TooltipSettings"
@@ -7,12 +8,12 @@ addon.hide, addon.ids, addon.info = {}, {}, {}
 local unpack = { hideInCombat = addon.hide, showIds = addon.ids, showPlayerInfo = addon.info }
 
 local function Setting(key)
-    local default = DataHandler.GetDefault(tableName, key)
+    local default = handler.GetDefault(tableName, key)
     local setting = Settings.RegisterAddOnSetting(category,
             addonName .. "_" .. key, key, addon.db[tableName],
             type(default), addon.lang[key], default)
 
-    setting:SetValueChangedCallback(function(_, value) DataHandler.SetSetting(tableName, key, value) end)
+    setting:SetValueChangedCallback(function(_, value) handler.SetSetting(tableName, key, value) end)
 
     return setting
 end
@@ -47,13 +48,13 @@ end
 
 local function AddMultiSelect(key, addDescription)
     local list = addon.db.Lists[key]
-    local default = DataHandler.GetDefault(tableName, key)
+    local default = handler.GetDefault(tableName, key)
 
     local proxy = Settings.RegisterProxySetting(category, addonName .. "_" .. key,
             Settings.VarType.Number, addon.lang[key], default,
-            function() return DataHandler.GetSetting(tableName, key) end,
+            function() return handler.GetSetting(tableName, key) end,
             function(value)
-                DataHandler.SetSetting(tableName, key, value)
+                handler.SetSetting(tableName, key, value)
                 local bitTable = unpack[key]
 
                 for i = 1, #list do
@@ -92,7 +93,7 @@ end
 function addon.PopulateBitTables()
     for name, list in pairs(addon.db.Lists) do
         local bitTable = unpack[name]
-        local value = DataHandler.GetSetting(tableName, name)
+        local value = handler.GetSetting(tableName, name)
 
         for i = 1, #list do
             bitTable[list[i]] = bit.band(value, bit.lshift(1, i - 1)) ~= 0

@@ -1,3 +1,9 @@
+### v2.0.2
+  - fix the display of wrong item IDs
+
+### v2.0.0
+  - complete rewrite(again) to allow usage on Retail and Foever
+
 ### v1.0.2
   - fixing missing flag in groupfinder
 

@@ -1,11 +1,12 @@
 local addonName, addon = ...
-DataHandler = {}
+local handler = {}
+addon.DataHandler = handler
 
 local f = CreateFrame("Frame")
 f:RegisterEvent("ADDON_LOADED")
 
 f:SetScript("OnEvent", function(_, event, name)
-    if event == "ADDON_LOADED" and name == addonName then DataHandler.OnLoad() end
+    if event == "ADDON_LOADED" and name == addonName then handler.OnLoad() end
 end)
 
 local function DeepCopy(source)
@@ -30,7 +31,7 @@ local function DeepMerge(target, source)
     end
 end
 
-function DataHandler.OnLoad()
+function handler.OnLoad()
     for key, defaults in pairs(addon.db.defaults) do
         addon.db[key] = DeepCopy(defaults)
 
@@ -43,17 +44,17 @@ function DataHandler.OnLoad()
     end
 end
 
-function DataHandler.SetSetting(table, key, value)
+function handler.SetSetting(table, key, value)
     local settings = addon.db[table]
     settings[key] = value
 end
 
-function DataHandler.GetSetting(table, key)
+function handler.GetSetting(table, key)
     local settings = addon.db[table]
     return settings[key]
 end
 
-function DataHandler.GetDefault(table, key)
+function handler.GetDefault(table, key)
     local default = addon.db.defaults[table]
     return default[key]
 end

@@ -88,7 +88,7 @@ function addon.InitTooltips()
                 if not IsUsable(id) then return end
 
                 if addon.ids[key] then
-                    AddLine(tooltip, lang[key], 1283745)
+                    AddLine(tooltip, lang[key], id)
                     added = true
                 end
 

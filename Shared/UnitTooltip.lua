@@ -5,7 +5,7 @@ local AddLine = TooltipUtils.AddLine
 
 local IsRestricted = C_RestrictedActions.IsAddOnRestrictionActive
 local Restriction = Enum.AddOnRestrictionType
-local GetSetting = DataHandler.GetSetting
+local GetSetting = addon.DataHandler.GetSetting
 local tableName = "TooltipSettings"
 
 local function AurasRestricted()
